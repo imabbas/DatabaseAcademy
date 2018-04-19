@@ -2,7 +2,7 @@
 
 ## Part I: Project Information
 
-* Introduction: See Introduction.md
+* [a relative link](intro.md)
 * Requirements Document: 
 
 Introduction (2%)
