@@ -1,0 +1,15 @@
+div#carousel-example-generic {
+    position:relative;
+}
+
+div.form-group {
+    transform:translate(-50%, -50%);
+    top:25%;
+    left:50%;
+    position:absolute;
+    z-index:9999999;
+}
+
+#d-block w-100{
+    filter: brightness(50%);
+}
