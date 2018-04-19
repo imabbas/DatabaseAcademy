@@ -1,24 +1,22 @@
 <?php
-        require "dbutil.php";
-        $db = DbUtil::loginConnection();
+         require "dbutil.php";
+         $db = DbUtil::loginConnection();
 
-        $stmt = $db->stmt_init();
+         $stmt = $db->stmt_init();
 
-        if($stmt->prepare("select * from Persons where LastN like ?") or die(mysqli_error($db))) {
-                $searchString = '%' . $_GET['searchLastName'] . '%';
+        if($stmt->prepare("(select * from Parent where f_name like ? or l_name like ?) UNION (select * from Teachers where f_name like ? or l_name like ?) UNION (select * from Students where f_name like ? or l_name like ?)") or die(mysqli_error($db))) {
+                $searchString = '%' . $_GET['searchField'] . '%';
                 $stmt->bind_param(s, $searchString);
                 $stmt->execute();
-                $stmt->bind_result($FirstN, $LastN, $Age);
-                echo "<table border=1><th>First Name</th><th>Last Name</th><th>Age</th>\n";
+                $stmt->bind_result($f_name, $l_name);
+                echo "<table border=1><th>First Name</th><th>Last Name</th>\n";
                 while($stmt->fetch()) {
-                        echo "<tr><td>$FirstN</td><td>$LastN</td><td>$Age</td></tr>";
+                        echo "<tr><td>$f_name</td><td>$l_name</td></tr>";
                 }
                 echo "</table>";
-
+        
                 $stmt->close();
         }
-
+        
         $db->close();
-
-
-?>
+?> 
