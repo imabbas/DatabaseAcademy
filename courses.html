@@ -34,11 +34,12 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="form-group col-sm-4 col-sm-offset-4"><h1 class="text-center" style:"position:absolute;">Databases Academy Courses</h1>
         <div class="input-group input-group-lg center-block">
-          <input type="text" class="form-control" id="searchField" placeholder="Search for courses">
-          <button type="submit" class="searchButton">
-            <i class="fas fa-search"></i>
-          </button>
+          <form action="ex01searchCourses.php" method="GET">
+            <input type="search" class="form-control" id="searchField" name="searchField" size=100 placeholder="Search for courses"> 
+            </button>
+          </form>
         </div>
+
       </div>
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
