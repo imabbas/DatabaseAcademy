@@ -10,6 +10,22 @@
     <link rel="stylesheet" href=css/index.css>
     <link rel="stylesheet" href=css/login.css>
 
+<!--     ajax stuff -->
+    <script>
+      $(document).ready(function() {
+        $( "#searchFieldInput" ).change(function() {
+          $.ajax({
+            url: 'ex01searchPersons.php', 
+            data: {
+              searchField: $( "#searchFieldInput" ).val()},
+              success: function(data){
+              $('#searchResult').html(data);  
+            }
+          });
+        });
+      });
+    </script>
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,14 +54,16 @@
     </nav>
 
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <div class="form-group col-sm-4 col-sm-offset-4"><h1 class="text-center" style:"position:absolute;">Database Academy People</h1>
+      <div class="form-group col-sm-4 col-sm-offset-4"><h1 class="text-center" style:"position:absolute;">Database Academy Peoples</h1>
         <div class="input-group input-group-lg center-block">
-          <form action="ex01searchPersons.php" method="GET">
-            <input type="search" class="form-control" id="searchField" name="searchField" size=100 placeholder="Search for students, teachers, and parents"> 
-            </button>
-          </form>
+<!--      <form action="ex01searchPersons.php" method="GET"> -->
+          <input type="search" class="form-control" id="searchFieldInput" size=100 placeholder="Search for students, teachers, and parents"> 
         </div>
-
+        <br/>
+        <div class="input-group input-group-lg center-block">
+          <div id="searchResult">Person Search Result</div>
+        </div>
+        <script type="text/javascript">( function(){ window.SIG_EXT = {}; } )()</script>
       </div>
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -80,6 +98,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
 
   </body>
 </html>
