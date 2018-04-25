@@ -40,8 +40,9 @@ if ( ! empty( $_POST ) ) {
 
                 if ($count > 0){
                   $_SESSION['user_id'] = $email;
+                  $_SESSION['loggedin'] = "yes";
                   echo("logged in");
-                  header('location:index.html');
+                  header('location:index.php');
                 }
                 else{
                   echo("login failed");
@@ -51,7 +52,6 @@ if ( ! empty( $_POST ) ) {
                 $stmt->close();
         }
         
-        $db->close();
      
       }
     }
