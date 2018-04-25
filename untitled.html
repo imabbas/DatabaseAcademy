@@ -15,29 +15,12 @@
 <!-- JAVASCRIPT STUFF -->
   <script>
 
-  var meme = function() {
-    $('.item').click(function() {
-      $.ajax({
-        type: "POST",
-        url: 'personDetail.php',
-        data: {name: $(this).text()},
-        dataType: "json",
-        success: function(data){
-          window.location = "http://www.google.com";
-        }
-
-      });
-      console.log($(this).text());
-    });
-
-  }
-
   $(document).ready(function() {
 
     $( "#LastNinput" ).change(function() {
 
       $.ajax({
-        url: 'ex01searchPersons.php',
+        url: 'ex01searchCourses.php',
         data: {searchField: $( "#LastNinput" ).val()},
         success: function(data){
           $('#LastNresult').html(data);
@@ -80,13 +63,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="clubs.php">Clubs</a>
+            <a class="nav-link" href="clubs.html">Clubs</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="courses.php">Courses</a>
+            <a class="nav-link" href="courses.html">Courses</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="index.php">People</a>
+            <a class="nav-link" href="index.html">People</a>
           </li>
         </ul>
       </div>

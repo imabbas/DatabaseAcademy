@@ -15,29 +15,12 @@
 <!-- JAVASCRIPT STUFF -->
   <script>
 
-  var meme = function() {
-    $('.item').click(function() {
-      $.ajax({
-        type: "POST",
-        url: 'personDetail.php',
-        data: {name: $(this).text()},
-        dataType: "json",
-        success: function(data){
-          window.location = "http://www.google.com";
-        }
-
-      });
-      console.log($(this).text());
-    });
-
-  }
-
   $(document).ready(function() {
 
     $( "#LastNinput" ).change(function() {
 
       $.ajax({
-        url: 'ex01searchPersons.php',
+        url: 'ex01searchCourses.php',
         data: {searchField: $( "#LastNinput" ).val()},
         success: function(data){
           $('#LastNresult').html(data);
@@ -48,29 +31,13 @@
 
   });
 
-  // var items = document.getElementsByClassName('items');
-  // for(var x = 0; x<items.length; x++){
-  //   items[x].onClick()
-  //   console.log(items);
-  // }
-  //
-  // function getDetail(x){
-  //   alert(x);
-  // }
-
-
-  // $(document).on("click", '.item', function(event) {
-  //   var itemText = $(".item").text();
-  //   alert(itemText);
-
-  // })
 
   </script>
 </head>
 
 
 <!-- BODY -->
-<body background="img/home2.jpg" style="background-size: auto;">
+<body background="img/courses.jpg" style="background-size: auto;">
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="index.html">DatabaseAcademy</a>
@@ -107,7 +74,7 @@
 
     <div class="background">
 
-      <h1 class="text-center" style="margin-top:50px;">Databases Academy People</h1>
+      <h1 class="text-center" style="margin-top:50px;">Databases Academy Courses</h1>
 
       <div id="search-bar" style="text-align:center;">
         <input class="form-control-center" id="LastNinput" type="search" size="100" placeholder="Search for students, teachers, and parents" style="width:500px">
@@ -115,7 +82,7 @@
 
       </br>
       <div id ="resultWrapper" style="text-align: center;">
-        <div id="LastNresult" style="height:50; overflow-y:auto; display: inline-block;"></div>
+        <div id="LastNresult" style="height:100; overflow-y:auto; display: inline-block;"></div>
       </div>
       </br>
       </br>
