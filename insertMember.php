@@ -35,6 +35,20 @@
             <a class="nav-link" href="index.php">People</a>
           </li>
 
+          <?php
+          session_start();
+          if($_SESSION['user_type'] == "1")
+          {
+          ?>
+
+         <li class="nav-item active">
+            <a class="nav-link" href="insertMember.php">Join Club</a>
+          </li>
+
+        <?php
+        }
+        ?>
+
         </ul>
       </div>
       <form class="form-inline">
