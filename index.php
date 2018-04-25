@@ -115,7 +115,10 @@
           session_start();
           if($_SESSION['loggedin'] == "yes"){
             ?>
-            <b> You are logged in as a <?php echo $_SESSION['type_name']; ?></b>
+            <font color="white"> You are logged in as a <?php echo $_SESSION['type_name']; ?></font>
+            &nbsp;
+            &nbsp;
+            &nbsp;
             <a href='logOut.php'>Logout</a>"
           <?php
           } else {

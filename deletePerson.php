@@ -11,28 +11,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href=css/index.css>
-
-<!-- JAVASCRIPT STUFF -->
-  <script>
-
-  $(document).ready(function() {
-
-    $( "#LastNinput" ).change(function() {
-
-      $.ajax({
-        url: 'ex01deletePerson.php',
-        data: {searchField: $( "#LastNinput" ).val(), searchField2: $( "#LastNinput2").val()},
-        success: function(data){
-          $('#LastNresult').html(data);
-          meme()
-        }
-      });
-    });
-
-  });
-
-
-  </script>
 </head>
 
 
@@ -74,13 +52,17 @@
         ?>
         </ul>
       </div>
-      <form class="form-inline" >
+      <form class="form-inline">
         <?php
           session_start();
           if($_SESSION['loggedin'] == "yes"){
-            echo "You are logged in as ";
-            echo $_SESSION['user_id'];
-            echo "<br/><a href='logOut.php'>Logout</a>";
+            ?>
+            <font color="white"> You are logged in as a <?php echo $_SESSION['type_name']; ?></font>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <a href='logOut.php'>Logout</a>"
+          <?php
           } else {
             echo "<br/><a href='login.php'>Login</a>";
           }
@@ -91,26 +73,16 @@
 
     <div class="background">
 
-      <h1 class="text-center" style="margin-top:50px;">Delete Student</h1>
-      </br>
-      </br>
-
-      <div id="search-bar" style="text-align:center;">
-        <input class="form-control-center" id="LastNinput" type="search" size="75" placeholder="Student First Name" style="width:500px">
-      </div>
-      </br>
-      <div id="search-bar" style="text-align:center;">
-        <input class="form-control-center" id="LastNinput2" type="search" size="75" placeholder="Student Last Name" style="width:500px">
-      </div>
-
-      </br>
-      <div id ="resultWrapper" style="text-align: center;">
-        <div id="LastNresult" style="height:100; overflow-y:auto; display: inline-block;"></div>
-      </div>
-      </br>
-      </br>
-      </br>
-      </br>
+  <h1 class="text-center" style="margin-top:50px;">Delete a Student</h1>
+  <BR>
+    <div id="form" style="text-align:center;padding-left:40%;padding-right:40%">
+      <form action="ex01deletePerson.php" method="POST" style="text-align:left">
+        First Name: <input type="text" name="f_name" required><br/><br/>
+        Last Name: <input type="text" name="l_name" required><br/><br/>
+        Email: <input type="text" name="email" required><br/><br/>
+        <input type="Submit">
+      </form>
+    </div>  
 
     </div>
 

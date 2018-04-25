@@ -78,9 +78,13 @@
         <?php
           session_start();
           if($_SESSION['loggedin'] == "yes"){
-            echo "You are logged in as ";
-            echo $_SESSION['user_id'];
-            echo "<br/><a href='logOut.php'>Logout</a>";
+            ?>
+            <font color="white"> You are logged in as a <?php echo $_SESSION['type_name']; ?></font>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <a href='logOut.php'>Logout</a>"
+          <?php
           } else {
             echo "<br/><a href='login.php'>Login</a>";
           }
