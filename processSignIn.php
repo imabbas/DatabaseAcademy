@@ -9,36 +9,25 @@ $db_name = "CS4750asg8bz"; // DB Schema
 require "dbutil.php";
 $db = DbUtil::loginConnection();
 
-
-
 session_start();
 
-echo $_POST['email'];
-
 if ( ! empty( $_POST ) ) {
-    echo("here first ");
+  
     if ( isset( $_POST['email'] ) && isset( $_POST['password'] ) ) {
-        // Getting submitted user data from database
-
-        echo("here second ");
-        //$stmt = $db->stmt_init();
 
         $stmt = $db->stmt_init();
 
-        if($stmt->prepare("(select email from Students where password = ?) UNION (select email from Teachers where password = ?) UNION (select email from Parent where password = ?)") or die(mysqli_error($db))) {
-                $stmt->bind_param("sss", $_POST['password'], $_POST['password'], $_POST['password']);
+        if($stmt->prepare("(select id from Students where password = ? and email = ?) UNION (select id from Teachers where password = ? and email = ?) UNION (select id from Parent where password = ? and email = ?)") or die(mysqli_error($db))) {
+                $stmt->bind_param("ssssss", $_POST['password'], $_POST['email'], $_POST['password'], $_POST['email'], $_POST['password'], $_POST['email']);
                 $stmt->execute();
-                //$stmt->bind_result($f_name, $l_name);
                 echo($stmt->num_rows);
-                $stmt->bind_result($name);
-                echo("heres the name :");
+                $stmt->bind_result($user_type);
                 $count = 0;
                 while($stmt->fetch()) {
                   $count++;
-                  echo "$name";
                 }
-
                 if ($count > 0){
+                  $_SESSION['user_type'] = $user_type;
                   $_SESSION['user_id'] = $_POST['email'];
                   $_SESSION['loggedin'] = "yes";
                   echo("logged in");
