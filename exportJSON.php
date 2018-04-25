@@ -30,9 +30,9 @@
     $download_file_name = "raw.json";
     
     //control the download using PHP header functions (force binary file download)
-    header("Content-Type: application/octet-stream");
-    header("Content-Transfer-Encoding: Binary");
-    header("Content-disposition: attachment; filename=\"$download_file_name\""); 
+    header('Content-Type: application/json');
+    header('Content-Disposition: attachment; filename="'.$download_file_name.'"');
+    header('Pragma: no-cache');
     
     //built in PHP function to encode the data in to JSON format
     echo json_encode($json_data);
