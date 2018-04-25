@@ -63,7 +63,7 @@
           ?>
 
          <li class="nav-item active">
-            <a class="nav-link" href="insertStudent.html">Add Students</a>
+            <a class="nav-link" href="insertPerson.php">Add Students</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="deletePerson.php">Delete Students</a>

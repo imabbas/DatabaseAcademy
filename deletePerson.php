@@ -20,7 +20,7 @@
     $( "#LastNinput" ).change(function() {
 
       $.ajax({
-        url: 'ex01searchCourses.php',
+        url: 'ex01deletePerson.php',
         data: {searchField: $( "#LastNinput" ).val(), searchField2: $( "#LastNinput2").val()},
         success: function(data){
           $('#LastNresult').html(data);
@@ -37,7 +37,7 @@
 
 
 <!-- BODY -->
-<body background="img/courses.jpg" style="background-size: auto;">
+<body background="img/home4.jpg" style="background-size: auto;">
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="index.php">DatabaseAcademy</a>
@@ -63,7 +63,7 @@
           ?>
 
          <li class="nav-item active">
-            <a class="nav-link" href="insertStudent.html">Add Students</a>
+            <a class="nav-link" href="insertPerson.php">Add Students</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="deletePerson.php">Delete Students</a>
@@ -74,7 +74,7 @@
         ?>
         </ul>
       </div>
-      <form class="form-inline">
+      <form class="form-inline" >
         <?php
           session_start();
           if($_SESSION['loggedin'] == "yes"){
@@ -94,6 +94,7 @@
       <h1 class="text-center" style="margin-top:50px;">Delete Student</h1>
       </br>
       </br>
+
       <div id="search-bar" style="text-align:center;">
         <input class="form-control-center" id="LastNinput" type="search" size="75" placeholder="Student First Name" style="width:500px">
       </div>
