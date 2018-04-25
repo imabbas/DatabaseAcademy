@@ -52,8 +52,6 @@
         }
         ?>
 
-
-
         </ul>
       </div>
       <form class="form-inline">
@@ -85,6 +83,9 @@
 				Email: <input type="text" name="email" required><br/><br/>
 				GPA: <input type="text" name="gpa" required><br/><br/>
 				Password: <input type="text" name="password" required><br/><br/>
+        <input type="Submit">
+        <br/>
+        <br/>
 
         <?php $noadd = array ("failure" => "Failed to add student to database");
                         if (isset($_GET["valid0"])) {
@@ -96,7 +97,7 @@
                         }
         ?>
 
-				<input type="Submit">
+
 			</form>
 		</div>	
 

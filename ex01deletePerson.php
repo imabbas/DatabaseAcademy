@@ -74,23 +74,34 @@
 <?php
 
         // Create connection
-        $con = new mysqli('stardock.cs.virginia.edu', 'CS4750asg8bz', 'spring2018', 'CS4750asg8bz');
+        $link = new mysqli('stardock.cs.virginia.edu', 'CS4750asg8bz', 'spring2018', 'CS4750asg8bz');
 
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+
+        //see if exists
+        $result = $link->query("SELECT f_name FROM Students where f_name='$_POST[f_name]' AND l_name='$_POST[l_name]' AND email='$_POST[email]' ");
+        if($result->num_rows == 0) {
+          echo "ERROR: Delete failed because record does not exist in the DB";
+          $link->close();
         } 
+        // else if it does exit, try to delete
+        else {
+          // Check connection
+          if($link === false){
+            die("ERROR: Could not connect. " . mysqli_connect_error());
+          } 
 
-        // sql to delete a record
-        $sql = "DELETE FROM Students where f_name='$_POST[f_name]' AND l_name='$_POST[l_name]' AND email='$_POST[email]' ";
+          // sql to delete a record
+          $sql = "DELETE FROM Students where f_name='$_POST[f_name]' AND l_name='$_POST[l_name]' AND email='$_POST[email]' ";
 
-        if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        } else {
-            echo "Error deleting record: " . $conn->error;
+          if(mysqli_query($link, $sql)){
+            echo "Record was deleted successfully.";
+          } 
+          else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+          }
+          mysqli_close($link);
+          
         }
-
-        $conn->close();
 
 ?>
 
