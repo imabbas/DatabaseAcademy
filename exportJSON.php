@@ -26,14 +26,15 @@
 	//built in PHP function to encode the data in to JSON format  
 	json_encode($json_data);  
 
-
-	$fp = fopen('students.csv', 'w');
-
-	fputcsv($fp,$json_data,"\t");
-	foreach($array as $row) {
-	   fputcsv($fp,$row,"\t");
-	}
-
-	fclose($fp);
+    //desired output filename
+    $download_file_name = "raw.json";
+    
+    //control the download using PHP header functions (force binary file download)
+    header("Content-Type: application/octet-stream");
+    header("Content-Transfer-Encoding: Binary");
+    header("Content-disposition: attachment; filename=\"$download_file_name\""); 
+    
+    //built in PHP function to encode the data in to JSON format
+    echo json_encode($json_data);
   
 ?> 
