@@ -16,18 +16,21 @@
   <script>
 
   var meme = function() {
+    $( "#test" ).load( "detail.html" );
     $('.item').click(function() {
+      var personName = $(this).text().split(" ");
+      var first_name = personName[0];
+      var last_name = personName[1];
+
       $.ajax({
         type: "POST",
         url: 'personDetail.php',
-        data: {name: $(this).text()},
-        dataType: "json",
+        data: {first_name: first_name, last_name: last_name},
         success: function(data){
-          window.location = "http://www.google.com";
+          $('#test').html(data);
         }
-
       });
-      console.log($(this).text());
+
     });
 
   }
@@ -70,7 +73,8 @@
 
 
 <!-- BODY -->
-<body background="img/home2.jpg" style="background-size: auto;">
+<body background="img/home1.jpg" style="background-size: auto;">
+<!-- NAV BAR -->
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="index.php">DatabaseAcademy</a>
@@ -106,8 +110,6 @@
         }
         ?>
 
-
-
         </ul>
       </div>
       <form class="form-inline">
@@ -138,15 +140,14 @@
       </div>
 
       </br>
-      <div id ="resultWrapper" style="text-align: center;">
-        <div id="LastNresult" style="height:50; overflow-y:auto; display: inline-block;"></div>
-      </div>
-      </br>
-      </br>
-      </br>
-      </br>
+      <div id="LastNresult" style="height:50; overflow-y:auto;"></div>
 
     </div>
+    <div id="test"></div>
+
+
+
+
 
     <script type="text/javascript">( function(){ window.SIG_EXT = {}; } )()</script></body></html>
 
