@@ -12,8 +12,9 @@
 
  if (!mysqli_query($con,$sql))
  {
- die('Error: ' . mysqli_error($con));
+ die(header("location:insertPerson.php?valid0=true&reason=failure"));
+ //die('Error: ' . mysqli_error($con));
  }
- echo "1 record added"; // Output to user
+ header("location:insertPerson.php?valid1=true&reason=success");
  mysqli_close($con);
 ?> 
