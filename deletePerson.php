@@ -49,7 +49,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="exportJSON.php">Export Student Info</a>
           </li>
-          <li class="nav-item active">
+           <li class="nav-item active">
             <a class="nav-link" href="addGrade.php">Add Student Grade</a>
           </li>
 
