@@ -11,9 +11,9 @@
                 $stmt->bind_param("ssssss", $searchString, $searchString, $searchString, $searchString, $searchString, $searchString);
                 $stmt->execute();
                 $stmt->bind_result($f_name, $l_name);
-                echo "<table border=1; width=450><th>First Name</th><th>Last Name</th>\n";
+                echo "<table border=1; width=450><th>First Name</th><th>Last Name</th><th>Details</th>\n";
                 while($stmt->fetch()) {
-                        echo "<tr><td>$f_name</td><td>$l_name</td></tr>";
+                        echo "<tr><td>$f_name</td><td>$l_name</td><td>stuff</td></tr>";
                 }
                 echo "</table>";
         
