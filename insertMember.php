@@ -37,7 +37,7 @@
           <?php
           //The form, only displayed on condition
           session_start();
-          if($_SESSION['user_type'] == "2")
+          if($_SESSION['user_type'] == "1")
           {
           ?>
 
@@ -50,9 +50,6 @@
           <li class="nav-item active">
             <a class="nav-link" href="exportJSON.php">Export Student Info</a>
           </li>
-					<li class="nav-item active">
-						<a class="nav-link" href="insertGrade.php">Add Grade</a>
-					</li>
 
         <?php
         }
@@ -80,22 +77,21 @@
 
 
 
-	<h1 class="text-center" style="margin-top:50px;">Add a Student Grade</h1>
+	<h1 class="text-center" style="margin-top:50px;">Add a Student</h1>
 	<BR>
 		<div id="form" style="text-align:center;padding-left:40%;padding-right:40%">
-			<form action='gpacalc.php' method="post" style="text-align:left">
-				First Name: <input type="text" name="f_name" required><br/><br/>
-				Last Name: <input type="text" name="l_name" required><br/><br/>
-				GPA: <input type="text" name="grade" required><br/><br/>
+			<form action="ex01insertMember.php" method="post" style="text-align:left">
+				Email: <input type="text" name="email" required><br/><br/>
+				GPA: <input type="text" name="c_name" required><br/><br/>
         <input type="Submit">
         <br/>
         <br/>
 
-        <?php $noadd = array ("failure" => "Failed to add grade to database");
+        <?php $noadd = array ("failure" => "Failed to add to club");
                         if (isset($_GET["valid0"])) {
                           echo $noadd[$_GET["reason"]];
                         }
-              $add = array ("success" => "Added new grade successfully");
+              $add = array ("success" => "Added new member of club successfully");
                         if (isset($_GET["valid1"])) {
                           echo $add[$_GET["reason"]];
                         }

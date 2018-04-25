@@ -37,22 +37,9 @@
           <?php
           //The form, only displayed on condition
           session_start();
-          if($_SESSION['user_type'] == "2")
+          if($_SESSION['user_type'] == "1")
           {
           ?>
-
-         <li class="nav-item active">
-            <a class="nav-link" href="insertPerson.php">Add Students</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="deletePerson.php">Delete Students</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="exportJSON.php">Export Student Info</a>
-          </li>
-					<li class="nav-item active">
-						<a class="nav-link" href="insertGrade.php">Add Grade</a>
-					</li>
 
         <?php
         }
@@ -65,10 +52,7 @@
           session_start();
           if($_SESSION['loggedin'] == "yes"){
             ?>
-            <font color="white"> You are logged in as a <?php echo $_SESSION['type_name']; ?></font>
-            &nbsp;
-            &nbsp;
-            &nbsp;
+            <b> You are logged in as a <?php echo $_SESSION['type_name']; ?></b>
             <a href='logOut.php'>Logout</a>"
           <?php
           } else {
@@ -78,32 +62,29 @@
       </form>
     </nav>
 
+<?php
 
+ $con = new mysqli('stardock.cs.virginia.edu', 'CS4750asg8bz', 'spring2018', 'CS4750asg8bz');
+ // Check connection
+ if (mysqli_connect_errno())
+ {
+ echo "Failed to connect to MySQL: " . mysqli_connect_error();
+ }
+ // Form the SQL query (an INSERT query)
+ $sql="INSERT INTO MemberOf_club (email, club_name)
+ VALUES
+ ('$_POST[email]','$_POST[c_name]')";
 
-	<h1 class="text-center" style="margin-top:50px;">Add a Student Grade</h1>
-	<BR>
-		<div id="form" style="text-align:center;padding-left:40%;padding-right:40%">
-			<form action='gpacalc.php' method="post" style="text-align:left">
-				First Name: <input type="text" name="f_name" required><br/><br/>
-				Last Name: <input type="text" name="l_name" required><br/><br/>
-				GPA: <input type="text" name="grade" required><br/><br/>
-        <input type="Submit">
-        <br/>
-        <br/>
+ if (!mysqli_query($con,$sql))
+ {
+ die(header("location:insertMember.php?valid0=true&reason=failure"));
+ //die('Error: ' . mysqli_error($con));
+ }
+ header("location:insertMember.php?valid1=true&reason=success");
+ mysqli_close($con);
 
-        <?php $noadd = array ("failure" => "Failed to add grade to database");
-                        if (isset($_GET["valid0"])) {
-                          echo $noadd[$_GET["reason"]];
-                        }
-              $add = array ("success" => "Added new grade successfully");
-                        if (isset($_GET["valid1"])) {
-                          echo $add[$_GET["reason"]];
-                        }
-        ?>
+?>
 
-
-			</form>
-		</div>
 
   </body>
 </html>
