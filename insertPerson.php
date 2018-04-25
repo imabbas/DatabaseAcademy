@@ -73,16 +73,18 @@
 
 
 
-	<h2>Insert into Persons table</h2>
+	<h1 class="text-center" style="margin-top:50px;">Add a Student</h1>
 	<BR>
-		<form action="PersonsInsert.php" method="post">
-			First Name: <input type="text" name="f_name">
-			Last Name: <input type="text" name="l_name">
-			Email: <input type="text" name="email">
-			GPA: <input type="text" name="gpa">
-			Password: <input type="text" name="password"
-			<input type="Submit">
-		</form>
+		<div id="form" style="text-align:center;padding-left:40%;padding-right:40%">
+			<form action="ex01insertPerson.php" method="post" style="text-align:left">
+				First Name: <input type="text" name="f_name" required><br/><br/>
+				Last Name: <input type="text" name="l_name" required><br/><br/>
+				Email: <input type="text" name="email" required><br/><br/>
+				GPA: <input type="text" name="gpa" required><br/><br/>
+				Password: <input type="text" name="password" required><br/><br/>
+				<input type="Submit">
+			</form>
+		</div>	
 
   </body>
 </html>
