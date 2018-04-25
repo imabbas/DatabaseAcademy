@@ -85,6 +85,17 @@
 				Email: <input type="text" name="email" required><br/><br/>
 				GPA: <input type="text" name="gpa" required><br/><br/>
 				Password: <input type="text" name="password" required><br/><br/>
+
+        <?php $noadd = array ("failure" => "Failed to add student to database");
+                        if (isset($_GET["valid0"])) {
+                          echo $noadd[$_GET["reason"]];
+                        }
+              $add = array ("success" => "Added new student successfully");
+                        if (isset($_GET["valid1"])) {
+                          echo $add[$_GET["reason"]];
+                        }
+        ?>
+
 				<input type="Submit">
 			</form>
 		</div>	
