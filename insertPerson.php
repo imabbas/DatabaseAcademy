@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html><head>
 
@@ -12,65 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href=css/index.css>
 
-<!-- JAVASCRIPT STUFF -->
-  <script>
-
-  var meme = function() {
-    $( "#test" ).load( "detail.html" );
-    $('.item').click(function() {
-      var personName = $(this).text().split(" ");
-      var first_name = personName[0];
-      var last_name = personName[1];
-
-      $.ajax({
-        type: "POST",
-        url: 'personDetail.php',
-        data: {first_name: first_name, last_name: last_name},
-        success: function(data){
-          $('#test').html(data);
-        }
-      });
-
-    });
-
-  }
-
-  $(document).ready(function() {
-
-    $( "#LastNinput" ).change(function() {
-
-      $.ajax({
-        url: 'ex01searchPersons.php',
-        data: {searchField: $( "#LastNinput" ).val()},
-        success: function(data){
-          $('#LastNresult').html(data);
-          meme()
-        }
-      });
-    });
-
-  });
-
-  // var items = document.getElementsByClassName('items');
-  // for(var x = 0; x<items.length; x++){
-  //   items[x].onClick()
-  //   console.log(items);
-  // }
-  //
-  // function getDetail(x){
-  //   alert(x);
-  // }
-
-
-  // $(document).on("click", '.item', function(event) {
-  //   var itemText = $(".item").text();
-  //   alert(itemText);
-
-  // })
-
-  </script>
 </head>
-
 
 <!-- BODY -->
 <body background="img/home2.jpg" style="background-size: auto;">
@@ -132,32 +75,30 @@
     </nav>
 
 
-    <div class="background">
 
-      <h1 class="text-center" style="margin-top:50px;">Databases Academy People</h1>
+	<h1 class="text-center" style="margin-top:50px;">Add a Student</h1>
+	<BR>
+		<div id="form" style="text-align:center;padding-left:40%;padding-right:40%">
+			<form action="ex01insertPerson.php" method="post" style="text-align:left">
+				First Name: <input type="text" name="f_name" required><br/><br/>
+				Last Name: <input type="text" name="l_name" required><br/><br/>
+				Email: <input type="text" name="email" required><br/><br/>
+				GPA: <input type="text" name="gpa" required><br/><br/>
+				Password: <input type="text" name="password" required><br/><br/>
 
-      <div id="search-bar" style="text-align:center;">
-        <input class="form-control-center" id="LastNinput" type="search" size="100" placeholder="Search for students, teachers, and parents" style="width:500px">
-      </div>
+        <?php $noadd = array ("failure" => "Failed to add student to database");
+                        if (isset($_GET["valid0"])) {
+                          echo $noadd[$_GET["reason"]];
+                        }
+              $add = array ("success" => "Added new student successfully");
+                        if (isset($_GET["valid1"])) {
+                          echo $add[$_GET["reason"]];
+                        }
+        ?>
 
-      </br>
-      <div id ="resultWrapper" style="text-align: center;">
-        <div id="LastNresult" style="height:50; overflow-y:auto; display: inline-block;"></div>
-      </div>
-      </br>
-      </br>
-      </br>
-      </br>
-
-    </div>
-    <div id="test"></div>
-
-
-
-
-
-    <script type="text/javascript">( function(){ window.SIG_EXT = {}; } )()</script></body></html>
-
+				<input type="Submit">
+			</form>
+		</div>	
 
   </body>
 </html>

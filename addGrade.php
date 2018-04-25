@@ -8,7 +8,7 @@
  // Form the SQL query (an INSERT query)
  $sql="INSERT INTO Students (f_name, l_name, email, gpa, password)
  VALUES
- ('$_POST[firstname]','$_POST[lastname]','$_POST[email]','$_POST[gpa]','$_POST[password]')";
+ ('$_POST[f_name]','$_POST[l_name]','$_POST[email]','$_POST[gpa]','$_POST[password]')";
 
  if (!mysqli_query($con,$sql))
  {

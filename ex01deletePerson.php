@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html><head>
 
@@ -12,68 +13,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href=css/index.css>
 
-<!-- JAVASCRIPT STUFF -->
-  <script>
-
-  var meme = function() {
-    $( "#test" ).load( "detail.html" );
-    $('.item').click(function() {
-      var personName = $(this).text().split(" ");
-      var first_name = personName[0];
-      var last_name = personName[1];
-
-      $.ajax({
-        type: "POST",
-        url: 'personDetail.php',
-        data: {first_name: first_name, last_name: last_name},
-        success: function(data){
-          $('#test').html(data);
-        }
-      });
-
-    });
-
-  }
-
-  $(document).ready(function() {
-
-    $( "#LastNinput" ).change(function() {
-
-      $.ajax({
-        url: 'ex01searchPersons.php',
-        data: {searchField: $( "#LastNinput" ).val()},
-        success: function(data){
-          $('#LastNresult').html(data);
-          meme()
-        }
-      });
-    });
-
-  });
-
-  // var items = document.getElementsByClassName('items');
-  // for(var x = 0; x<items.length; x++){
-  //   items[x].onClick()
-  //   console.log(items);
-  // }
-  //
-  // function getDetail(x){
-  //   alert(x);
-  // }
-
-
-  // $(document).on("click", '.item', function(event) {
-  //   var itemText = $(".item").text();
-  //   alert(itemText);
-
-  // })
-
-  </script>
 </head>
 
 
 <!-- BODY -->
-<body background="img/home2.jpg" style="background-size: auto;">
+<body background="img/home4.jpg" style="background-size: auto;">
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="index.php">DatabaseAcademy</a>
@@ -109,8 +53,6 @@
         }
         ?>
 
-
-
         </ul>
       </div>
       <form class="form-inline">
@@ -118,10 +60,7 @@
           session_start();
           if($_SESSION['loggedin'] == "yes"){
             ?>
-            <font color="white"> You are logged in as a <?php echo $_SESSION['type_name']; ?></font>
-            &nbsp;
-            &nbsp;
-            &nbsp;
+            <b> You are logged in as a <?php echo $_SESSION['type_name']; ?></b>
             <a href='logOut.php'>Logout</a>"
           <?php
           } else {
@@ -132,31 +71,28 @@
     </nav>
 
 
-    <div class="background">
+<?php
 
-      <h1 class="text-center" style="margin-top:50px;">Databases Academy People</h1>
+        // Create connection
+        $con = new mysqli('stardock.cs.virginia.edu', 'CS4750asg8bz', 'spring2018', 'CS4750asg8bz');
 
-      <div id="search-bar" style="text-align:center;">
-        <input class="form-control-center" id="LastNinput" type="search" size="100" placeholder="Search for students, teachers, and parents" style="width:500px">
-      </div>
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
 
-      </br>
-      <div id ="resultWrapper" style="text-align: center;">
-        <div id="LastNresult" style="height:50; overflow-y:auto; display: inline-block;"></div>
-      </div>
-      </br>
-      </br>
-      </br>
-      </br>
+        // sql to delete a record
+        $sql = "DELETE FROM Students where f_name='$_POST[f_name]' AND l_name='$_POST[l_name]' AND email='$_POST[email]' ";
 
-    </div>
-    <div id="test"></div>
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully";
+        } else {
+            echo "Error deleting record: " . $conn->error;
+        }
 
+        $conn->close();
 
-
-
-
-    <script type="text/javascript">( function(){ window.SIG_EXT = {}; } )()</script></body></html>
+?>
 
 
   </body>
