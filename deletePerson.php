@@ -15,30 +15,13 @@
 <!-- JAVASCRIPT STUFF -->
   <script>
 
-  var meme = function() {
-    $('.item').click(function() {
-      $.ajax({
-        type: "POST",
-        url: 'personDetail.php',
-        data: {name: $(this).text()},
-        dataType: "json",
-        success: function(data){
-          window.location = "http://www.google.com";
-        }
-
-      });
-      console.log($(this).text());
-    });
-
-  }
-
   $(document).ready(function() {
 
     $( "#LastNinput" ).change(function() {
 
       $.ajax({
-        url: 'ex01searchPersons.php',
-        data: {searchField: $( "#LastNinput" ).val()},
+        url: 'ex01searchCourses.php',
+        data: {searchField: $( "#LastNinput" ).val(), searchField2: $( "#LastNinput2").val()},
         success: function(data){
           $('#LastNresult').html(data);
           meme()
@@ -48,29 +31,13 @@
 
   });
 
-  // var items = document.getElementsByClassName('items');
-  // for(var x = 0; x<items.length; x++){
-  //   items[x].onClick()
-  //   console.log(items);
-  // }
-  //
-  // function getDetail(x){
-  //   alert(x);
-  // }
-
-
-  // $(document).on("click", '.item', function(event) {
-  //   var itemText = $(".item").text();
-  //   alert(itemText);
-
-  // })
 
   </script>
 </head>
 
 
 <!-- BODY -->
-<body background="img/home2.jpg" style="background-size: auto;">
+<body background="img/courses.jpg" style="background-size: auto;">
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="index.php">DatabaseAcademy</a>
@@ -105,19 +72,15 @@
         <?php
         }
         ?>
-
-
-
         </ul>
       </div>
       <form class="form-inline">
         <?php
           session_start();
           if($_SESSION['loggedin'] == "yes"){
-            ?>
-            <b> You are logged in as a <?php echo $_SESSION['type_name']; ?></b>
-            <a href='logOut.php'>Logout</a>"
-          <?php
+            echo "You are logged in as ";
+            echo $_SESSION['user_id'];
+            echo "<br/><a href='logOut.php'>Logout</a>";
           } else {
             echo "<br/><a href='login.php'>Login</a>";
           }
@@ -128,15 +91,20 @@
 
     <div class="background">
 
-      <h1 class="text-center" style="margin-top:50px;">Databases Academy People</h1>
-
+      <h1 class="text-center" style="margin-top:50px;">Delete Student</h1>
+      </br>
+      </br>
       <div id="search-bar" style="text-align:center;">
-        <input class="form-control-center" id="LastNinput" type="search" size="100" placeholder="Search for students, teachers, and parents" style="width:500px">
+        <input class="form-control-center" id="LastNinput" type="search" size="75" placeholder="Student First Name" style="width:500px">
+      </div>
+      </br>
+      <div id="search-bar" style="text-align:center;">
+        <input class="form-control-center" id="LastNinput2" type="search" size="75" placeholder="Student Last Name" style="width:500px">
       </div>
 
       </br>
       <div id ="resultWrapper" style="text-align: center;">
-        <div id="LastNresult" style="height:50; overflow-y:auto; display: inline-block;"></div>
+        <div id="LastNresult" style="height:100; overflow-y:auto; display: inline-block;"></div>
       </div>
       </br>
       </br>

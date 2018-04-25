@@ -40,7 +40,7 @@
 <body background="img/clubs.jpg" style="background-size: auto;">
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="index.html">DatabaseAcademy</a>
+      <a class="navbar-brand" href="index.php">DatabaseAcademy</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -55,6 +55,23 @@
           <li class="nav-item active">
             <a class="nav-link" href="index.php">People</a>
           </li>
+          <?php
+          //The form, only displayed on condition
+          session_start();
+          if($_SESSION['user_type'] == "2")
+          {
+          ?>
+
+         <li class="nav-item active">
+            <a class="nav-link" href="insertStudent.html">Add Students</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="deletePerson.php">Delete Students</a>
+          </li>
+
+        <?php
+        }
+        ?>
         </ul>
       </div>
       <form class="form-inline">
