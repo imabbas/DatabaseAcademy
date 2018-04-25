@@ -3,8 +3,10 @@
 
 <!-- SETUP -->
   <meta charset="utf-8">
-    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script> 
+    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
   <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <title>High School Directory</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -12,26 +14,63 @@
 
 <!-- JAVASCRIPT STUFF -->
   <script>
-  $(document).ready(function() {
-    $( "#LastNinput" ).change(function() {
-    
+
+  var meme = function() {
+    $('.item').click(function() {
       $.ajax({
-        url: 'ex01searchPersons.php', 
+        type: "POST",
+        url: 'personDetail.php',
+        data: {name: $(this).text()},
+        dataType: "json",
+        success: function(data){
+          window.location = "http://www.google.com";
+        }
+
+      });
+      console.log($(this).text());
+    });
+
+  }
+
+  $(document).ready(function() {
+
+    $( "#LastNinput" ).change(function() {
+
+      $.ajax({
+        url: 'ex01searchPersons.php',
         data: {searchField: $( "#LastNinput" ).val()},
         success: function(data){
-          $('#LastNresult').html(data); 
-        
+          $('#LastNresult').html(data);
+          meme()
         }
       });
     });
-    
+
   });
+
+  // var items = document.getElementsByClassName('items');
+  // for(var x = 0; x<items.length; x++){
+  //   items[x].onClick()
+  //   console.log(items);
+  // }
+  //
+  // function getDetail(x){
+  //   alert(x);
+  // }
+
+
+  // $(document).on("click", '.item', function(event) {
+  //   var itemText = $(".item").text();
+  //   alert(itemText);
+
+  // })
+
   </script>
 </head>
 
 
 <!-- BODY -->
-<body>
+<body background="img/home1.jpg" style="background-size: auto;">
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="index.html">DatabaseAcademy</a>
@@ -52,72 +91,35 @@
         </ul>
       </div>
       <form class="form-inline">
-        <?php 
+        <?php
           session_start();
           if($_SESSION['loggedin'] == "yes"){
-            echo "You are logged in as "; 
+            echo "You are logged in as ";
             echo $_SESSION['user_id'];
             echo "<br/><a href='logOut.php'>Logout</a>";
           } else {
             echo "<br/><a href='login.php'>Login</a>";
           }
         ?>
-
-
       </form>
     </nav>
 
-<!-- CAROUSEL STUFF -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
-      <div class="form-group col-sm-4 col-sm-offset-4"><h1 class="text-center" style:"position:absolute;">Databases Academy People</h1>
-        
-        <div class="input-group input-group-lg center-block">
-          <!-- SEARCH INPUT -->
-          <input class="form-control" id="LastNinput" type="search" size=100 placeholder="Search for students, teachers, and parents">
-        </div>
+    <div class="background">
 
-        </br>
-        </br>
-        </br>
-        <!-- RESULTS -->
-        <div id="LastNresult"></div>
-        
+      <h1 class="text-center" style="margin-top:50px;">Databases Academy People</h1>
+
+      <div id="search-bar" style="text-align:center;">
+        <input class="form-control-center" id="LastNinput" type="search" size="100" placeholder="Search for students, teachers, and parents" style="width:500px">
       </div>
 
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-
-      <div class="carousel-inner">
-        <div class="carousel-item active" >
-          <img class="d-block w-100" src="img/home2.jpg" alt="First slide" style="">
-        </div>
-      </div>
-
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+      </br>
+      <div id="LastNresult" style="height:50; overflow-y:auto;"></div>
 
     </div>
 
-<!-- SCRIPT STUFF -->
-<!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script> -->
     <script type="text/javascript">( function(){ window.SIG_EXT = {}; } )()</script></body></html>
 
 
   </body>
 </html>
-
-

@@ -7,7 +7,7 @@
   <div class="row">
     <div class="Absolute-Center is-Responsive">
       <div id="logo-container">
-        <a id="logo-text" href="index.html" >DatabaseAcademy</a>
+        <a id="logo-text" href="index.php" >DatabaseAcademy</a>
       </div>
       <div class="col-sm-12 col-md-10 col-md-offset-1">
         <!-- PROCESS SIGN IN -->
@@ -28,10 +28,10 @@
                           echo $reasons[$_GET["reason"]];
                         }
             ?>
-            
+
              <input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit">
           </div>
-          
+
         </form>
       </div>
     </div>
