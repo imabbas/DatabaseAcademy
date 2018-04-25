@@ -73,7 +73,7 @@
 
 
 <!-- BODY -->
-<body background="img/home1.jpg" style="background-size: auto;">
+<body background="img/home2.jpg" style="background-size: auto;">
 <!-- NAV BAR -->
 <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -139,8 +139,10 @@
         <input class="form-control-center" id="LastNinput" type="search" size="100" placeholder="Search for students, teachers, and parents" style="width:500px">
       </div>
 
-      </br>
-      <div id="LastNresult" style="height:50; overflow-y:auto;"></div>
+      <br/>
+      <div id ="resultWrapper" style="text-align: center;">
+        <div id="LastNresult" style="height:100; overflow-y:auto; display: inline-block;"></div>
+      </div>
 
     </div>
     <div id="test"></div>
