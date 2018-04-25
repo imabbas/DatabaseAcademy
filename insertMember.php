@@ -34,26 +34,6 @@
           <li class="nav-item active">
             <a class="nav-link" href="index.php">People</a>
           </li>
-          <?php
-          //The form, only displayed on condition
-          session_start();
-          if($_SESSION['user_type'] == "1")
-          {
-          ?>
-
-         <li class="nav-item active">
-            <a class="nav-link" href="insertPerson.php">Add Students</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="deletePerson.php">Delete Students</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="exportJSON.php">Export Student Info</a>
-          </li>
-
-        <?php
-        }
-        ?>
 
         </ul>
       </div>
