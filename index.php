@@ -16,18 +16,21 @@
   <script>
 
   var meme = function() {
+    $( "#test" ).load( "detail.html" );
     $('.item').click(function() {
+      var personName = $(this).text().split(" ");
+      var first_name = personName[0];
+      var last_name = personName[1];
+
       $.ajax({
         type: "POST",
         url: 'personDetail.php',
-        data: {name: $(this).text()},
-        dataType: "json",
+        data: {first_name: first_name, last_name: last_name},
         success: function(data){
-          window.location = "http://www.google.com";
+          $('#test').html(data);
         }
-
       });
-      console.log($(this).text());
+
     });
 
   }
@@ -117,6 +120,11 @@
       <div id="LastNresult" style="height:50; overflow-y:auto;"></div>
 
     </div>
+    <div id="test"></div>
+
+
+
+
 
     <script type="text/javascript">( function(){ window.SIG_EXT = {}; } )()</script></body></html>
 

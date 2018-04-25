@@ -4,14 +4,17 @@
 
         $stmt = $db->stmt_init();
 
-        if($stmt->prepare("(select f_name, l_name from Parent where f_name like ? or l_name like ?) UNION (select f_name, l_name from Teachers where f_name like ? or l_name like ?) UNION (select f_name, l_name from Students where f_name like ? or l_name like ?)") or die(mysqli_error($db))) {
-                $searchString = '%' . $_GET['name'] . '%';
-                $stmt->bind_param("ssssss", $searchString, $searchString, $searchString, $searchString, $searchString, $searchString);
+        if($stmt->prepare("(select f_name, l_name, salary from Teachers where f_name like ?)") or die(mysqli_error($db))) {
+                $searchString = '%' . $_POST['first_name'] . '%';
+
+                $stmt->bind_param("s", $searchString);
                 $stmt->execute();
-                $stmt->bind_result($f_name, $l_name);
-                echo "<table border=1; width=450><th>People</th>\n";
+                $stmt->bind_result($f_name, $l_name, $salary);
+                echo "</br>";
+                echo "Results";
+                echo "<table border=1; width=450><th>Name</th><th>Salary</th>\n";
                 while($stmt->fetch()) {
-                        echo "<tr><td>$f_name $l_name</td></tr>";
+                        echo "<tr><td class='item'>$f_name $l_name</td><td> $salary</td></tr>";
                 }
                 echo "</table>";
 
