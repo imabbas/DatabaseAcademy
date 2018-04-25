@@ -92,8 +92,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="index.php">People</a>
           </li>
+          
           <?php
-          //The form, only displayed on condition
+
           session_start();
           if($_SESSION['user_type'] == "2")
           {
@@ -110,6 +111,20 @@
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="addGrade.php">Add Student Grade</a>
+          </li>
+
+        <?php
+        }
+        ?>
+
+        <?php
+          session_start();
+          if($_SESSION['user_type'] == "1")
+          {
+          ?>
+
+         <li class="nav-item active">
+            <a class="nav-link" href="insertMember.php">Join Club</a>
           </li>
 
         <?php
