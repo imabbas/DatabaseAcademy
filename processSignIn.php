@@ -39,7 +39,7 @@ if ( ! empty( $_POST ) ) {
                 }
 
                 if ($count > 0){
-                  $_SESSION['user_id'] = $email;
+                  $_SESSION['user_id'] = $_POST['email'];
                   $_SESSION['loggedin'] = "yes";
                   echo("logged in");
                   header('location:index.php');
