@@ -4,7 +4,7 @@
 
         $stmt = $db->stmt_init();
 
-        if($stmt->prepare("(select f_name, l_name, salary, email from Teachers where f_name like ?)") or die(mysqli_error($db))) {
+        if($stmt->prepare("(select f_name, l_name, salary, email from Teachers where f_name like ?) UNION (select f_name, l_name from Students where f_name like ?)") or die(mysqli_error($db))) {
                 $searchString = '%' . $_POST['first_name'] . '%';
 
                 $stmt->bind_param("s", $searchString);

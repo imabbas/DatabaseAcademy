@@ -19,4 +19,4 @@ while ($values = $result ->fetch())
   print_r($values);
 }
 
-?>.
+?>
