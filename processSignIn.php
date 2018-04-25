@@ -28,6 +28,15 @@ if ( ! empty( $_POST ) ) {
                 }
                 if ($count > 0){
                   $_SESSION['user_type'] = $user_type;
+                  if($_SESSION['user_type'] == "1"){
+                    $_SESSION['type_name'] = "Student";
+                  }
+                  else if ($_SESSION['user_type'] == "2"){
+                    $_SESSION['type_name'] = "Teacher";
+                  }
+                  else {
+                    $_SESSION['type_name'] = "Parent";
+                  }
                   $_SESSION['user_id'] = $_POST['email'];
                   $_SESSION['loggedin'] = "yes";
                   echo("logged in");

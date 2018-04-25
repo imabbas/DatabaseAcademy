@@ -88,15 +88,33 @@
           <li class="nav-item active">
             <a class="nav-link" href="index.html">People</a>
           </li>
+          <?php
+          //The form, only displayed on condition
+          session_start();
+          if($_SESSION['user_type'] == "2")
+          {
+          ?>
+
+         <li class="nav-item active">
+            <a class="nav-link" href="insertStudent.html">Add Students</a>
+          </li>
+
+        <?php
+        }
+        ?>
+
+
+
         </ul>
       </div>
       <form class="form-inline">
         <?php
           session_start();
           if($_SESSION['loggedin'] == "yes"){
-            echo "You are logged in as ";
-            echo $_SESSION['user_id'];
-            echo "<br/><a href='logOut.php'>Logout</a>";
+            ?>
+            <b> You are logged in as a <?php echo $_SESSION['type_name']; ?></b>
+            <a href='logOut.php'>Logout</a>"
+          <?php
           } else {
             echo "<br/><a href='login.php'>Login</a>";
           }
