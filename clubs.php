@@ -89,6 +89,7 @@
             <a class="nav-link" href="insertMember.php">Join Club</a>
           </li>
 
+
         <?php
         }
         ?>
