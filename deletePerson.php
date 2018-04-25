@@ -46,6 +46,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="deletePerson.php">Delete Students</a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="exportJSON.php">Export Student Info</a>
+          </li>
 
         <?php
         }
@@ -81,6 +84,21 @@
         Last Name: <input type="text" name="l_name" required><br/><br/>
         Email: <input type="text" name="email" required><br/><br/>
         <input type="Submit">
+        <br/>
+        <br/>
+<!--         <?php $noadd = array ("failure" => "Failed to delete student from database");
+        if (isset($_GET["valid0"])) {
+          echo $noadd[$_GET["reason"]];
+        }
+        $add = array ("success" => "Deleted student successfuly");
+        if (isset($_GET["valid1"])) {
+          echo $add[$_GET["reason"]];
+        }
+        $aadd = array ("failure" => "Unable to delete because given student does not exist");
+        if (isset($_GET["valid2"])) {
+          echo $aadd[$_GET["reason"]];
+        }
+        ?> -->
       </form>
     </div>  
 
