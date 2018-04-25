@@ -1,18 +1,22 @@
-
 <?php
+$fn = $_POST['f_name'];
+$ln = $_POST['l_name'];
+$g = (float)$_POST['grade'];
 
-require "dbutil.php";
-$db = DbUtil::loginConnection();
+$con = new mysqli('stardock.cs.virginia.edu', 'CS4750asg8bz', 'spring2018', 'CS4750asg8bz');
+if (mysqli_connect_errno())
+{
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
 
-  //connect to database
-  $connection = mysqli_connect("CS", "user", "password", "db", "port");
+$sql="CALL recalc_GPA($fn, $ln, $g)";
+$result = $con -> prepare($sql);
+$result->setFetchMode(PDO::FETCH_ASSOC);
 
-  //run the store proc
-  $result = mysqli_query($db,
-     "CALL recalc_GPA") or die("Query fail: " . mysqli_error());
+while ($values = $result ->fetch())
+{
+  print "<pre>";
+  print_r($values);
+}
 
-  while ($row = mysqli_fetch_array($result)){
-      echo $row[0] . " - " . + $row[1];
-  }
-
-?>
+?>.
