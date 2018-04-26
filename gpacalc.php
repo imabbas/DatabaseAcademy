@@ -9,9 +9,9 @@ if (mysqli_connect_errno())
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$sql="CALL recalc_GPA($fn, $ln, $g)";
-$result = $con -> prepare($sql);
-$result->setFetchMode(PDO::FETCH_ASSOC);
+$sql="CALL recalc_GPA($fn, $ln, $g)" or die('could not calculate');
+$result = $con -> prepare($sql) or die('could not prepare');
+$result->setFetchMode(PDO::FETCH_ASSOC) or die("could not fetch");
 
 while ($values = $result ->fetch())
 {
