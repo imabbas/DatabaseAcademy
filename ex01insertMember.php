@@ -71,9 +71,9 @@
  echo "Failed to connect to MySQL: " . mysqli_connect_error();
  }
  // Form the SQL query (an INSERT query)
- $sql="INSERT INTO MemberOf_club (student_email, club_name)
+ $sql="INSERT INTO MemberOf_club (email, club_name)
  VALUES
- ('$_SESSION[user_id]','$_POST[c_name]')";
+ ('$_SESSION[email]','$_POST[c_name]')";
 
  if (!mysqli_query($con,$sql))
  {
