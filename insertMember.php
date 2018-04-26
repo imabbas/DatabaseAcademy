@@ -71,12 +71,11 @@
 
 
 
-	<h1 class="text-center" style="margin-top:50px;">Add a Student</h1>
+	<h1 class="text-center" style="margin-top:50px;">Join a Club</h1>
 	<BR>
 		<div id="form" style="text-align:center;padding-left:40%;padding-right:40%">
 			<form action="ex01insertMember.php" method="post" style="text-align:left">
-				Email: <input type="text" name="email" required><br/><br/>
-				GPA: <input type="text" name="c_name" required><br/><br/>
+				Club Name: <input type="text" name="c_name" required><br/><br/>
         <input type="Submit">
         <br/>
         <br/>
