@@ -73,7 +73,7 @@
  // Form the SQL query (an INSERT query)
  $sql="INSERT INTO MemberOf_club (email, club_name)
  VALUES
- ('$_SESSION[email]','$_POST[c_name]')";
+ ('$_SESSION[user_id]','$_POST[c_name]')";
 
  if (!mysqli_query($con,$sql))
  {
