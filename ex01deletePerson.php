@@ -48,6 +48,12 @@
           <li class="nav-item active">
             <a class="nav-link" href="deletePerson.php">Delete Students</a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="exportJSON.php">Export Student Info</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="insertGrade.php">Add Grade</a>
+          </li>
 
         <?php
         }

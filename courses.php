@@ -72,9 +72,29 @@
             <a class="nav-link" href="exportJSON.php">Export Student Info</a>
           </li>
 
+           <li class="nav-item active">
+            <a class="nav-link" href="addGrade.php">Add Student Grade</a>
+          </li>
+
         <?php
         }
         ?>
+
+        <?php
+          session_start();
+          if($_SESSION['user_type'] == "1")
+          {
+          ?>
+
+         <li class="nav-item active">
+            <a class="nav-link" href="insertMember.php">Join Club</a>
+          </li>
+
+        <?php
+        }
+        ?>
+
+
         </ul>
       </div>
       <form class="form-inline">
