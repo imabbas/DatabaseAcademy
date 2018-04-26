@@ -75,7 +75,6 @@
 	<BR>
 		<div id="form" style="text-align:center;padding-left:40%;padding-right:40%">
 			<form action="ex01insertMember.php" method="post" style="text-align:left">
-				Email: <input type="text" name="email" required><br/><br/>
 				GPA: <input type="text" name="c_name" required><br/><br/>
         <input type="Submit">
         <br/>
